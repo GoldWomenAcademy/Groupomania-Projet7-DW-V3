@@ -1,61 +1,24 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import login from '../views/login.vue'
-import signup from '../views/signup.vue'
-import posts from '../views/posts.vue'
-import account from '../views/account.vue'
-import myPosts from '../views/myPosts.vue'
-import publish from '../views/publish.vue'
-import postDetails from '../views/postDetails.vue'
-import updatePost from '../views/updatePost.vue'
-
-Vue.use(VueRouter)
+import { createRouter, createWebHistory } from 'vue-router'
+import Home from '../views/Home.vue'
 
 const routes = [
   {
     path: '/',
-    name: 'login',
-    component: login
+    name: 'Home',
+    component: Home
   },
   {
-    path: '/signup',
-    name: 'signup',
-    component: signup
-  },
-  {
-    path: '/posts',
-    name: 'posts',
-    component: posts
-  },
-  {
-    path: '/myposts/:token_user',
-    name: 'myPosts',
-    component: myPosts
-  },
-  {
-    path: '/account/:token_user',
-    name: 'account',
-    component: account
-  },
-  {
-    path: '/publish',
-    name: 'publish',
-    component: publish
-  },
-  {
-    path: '/postDetails/:post_id',
-    name: 'postDetails',
-    component: postDetails
-  },
-  {
-    path: '/updatePost/:token_user/:post_id',
-    name: 'updatePost',
-    component: updatePost
+    path: '/about',
+    name: 'About',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   }
 ]
 
-const router = new VueRouter({
-  mode: 'history',
+const router = createRouter({
+  history: createWebHistory(process.env.BASE_URL),
   routes
 })
 
